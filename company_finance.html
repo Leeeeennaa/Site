@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css.css">
+    <title>Segezha Group</title>
+</head>
+
+<header>
+    
+</header>
+
+<body>
+    
+    <!-- Видео с вебсайта Segezha которое проигрывается самостоятельно и без звука -->
+    <video autoplay muted> <source src=" https://segezha-group.com/upload/iblock/c99/fs1t9yybssighf6ex8gah5dv86ksx5kf.mp4" type="video/mp4"></video>
+    <div class="money">
+    <h1>Рыночная капитализация 120 миллиардов рублей</h1>
+    <h1>Акций в обращении 15 690 000 000</h1>
+    
+    <table id="stockPricesTable"> 
+        <tbody>
+    
+    <tr>
+        <th>Date           </th>
+        <th>Open   </th>
+        <th>Close        </th>
+
+    </tr>
+        
+            
+    <tr>     
+        <td >2023-04-03</td>
+         <td>5.42500</td>
+         <td>5.35400</td>
+     </tr>
+            
+    <tr>     
+        <td >2023-04-04</td>
+         <td>5.39500</td>
+         <td>5.43800</td>
+     </tr>
+            
+        
+     <tr>     
+        <td >2023-04-05</td>
+         <td>5.43100</td>
+         <td>5.49900</td>
+     </tr>
+            
+    <tr>     
+        <td >2023-04-06</td>
+         <td>5.50000</td>
+         <td>5.62000</td>
+     </tr>
+            
+    <tr>     
+        <td >2023-04-07</td>
+         <td>5.68100</td>
+         <td>5.69800</td>
+
+     </tr>
+            
+    <tr>     
+        <td >2023-04-10</td>
+         <td>5.73500</td>
+         <td>5.69900</td>
+
+     </tr>
+            
+    <tr>     
+        <td >2023-04-11</td>
+         <td>5.72200</td>
+         <td>5.60300</td>
+
+     </tr>
+            
+    <tr>     
+        <td >2023-04-12</td>
+         <td>5.58000</td>
+         <td>5.65000</td>
+
+     </tr>
+            
+    <tr>
+        <td >2023-04-13</td>
+         <td>5.67900</td>
+         <td>5.58600</td>
+     </tr>
+            
+    <tr>     
+        <td >2023-04-14</td>
+         <td>5.61300</td>
+         <td>5.62000</td>
+
+     </tr>
+    
+     <tr>     
+        <td >2023-04-17</td>
+         <td>5.64400</td>
+         <td>5.68100</td>
+
+     </tr>
+            
+     <tr>     
+        <td >2023-04-18</td>
+         <td>5.69800</td>
+         <td>5.66400</td>
+
+     </tr>
+            
+    <tr>     
+        <td >2023-04-19</td>
+         <td>5.66700</td>
+         <td>5.59500</td>
+
+     </tr>
+    <tr>     
+        <td >2023-04-20</td>
+         <td>5.60500</td>
+         <td>5.59900</td>
+
+     </tr>
+            
+    <tr>     
+        <td>2023-04-21</td>
+         <td>5.59200</td>
+         <td>5.62600</td>
+
+     </tr>
+            
+    <tr>     
+        <td >2023-04-24</td>
+         <td>5.66500</td>
+         <td>5.64900</td>
+
+     </tr>
+            
+    <tr>
+        <td >2023-04-25</td>
+         <td>5.68000</td>
+         <td>5.72000</td>
+
+     </tr>
+            
+    <tr>     
+        <td >2023-04-26</td>
+         <td>5.74000</td>
+         <td>5.70400</td>
+
+     </tr>
+            
+    <tr>     
+        <td >2023-04-27</td>
+         <td>5.70100</td>
+         <td>5.73300</td>
+
+     </tr>
+            
+    <tr>     
+        <td >2023-04-28</td>
+         <td>5.76000</td>
+         <td>5.67000</td>
+
+     </tr>
+    <tr>
+        <th>Date           </th>
+        <th>Open   </th>
+        <th>Close        </th>
+
+      </tr>
+    
+    
+        </tbody>
+    </table>
+
+  
+
+
+    </div>
+    
+    <div class="navbar">
+        <a href="about.html"> <img src="About.png">About</a>
+        <a href="company_finance.html"> <img src="Finance.png">Company Finance</a>
+        <a href="contact.html"> <img src="contact.png">Contact</a>
+        <a href="video.html"> <img src="video.png">Video</a> 
+      </div>
+      
+      
+
+      <script>
+        function calculateStockStats() {
+          // Выбираем таблицу и все строки по id и тегу 
+          const table = document.getElementById("stockPricesTable");
+          const rows = table.getElementsByTagName("tr");
+        
+          let sum = 0;
+          //??<?
+          let minPrice = Number.MAX_VALUE;
+          let maxPrice = Number.MIN_VALUE;
+          let stockPrices = [];
+        
+          for (let i = 2; i <rows.length - 1; i++) {
+            // Проходя по каждой цене(которая находится в третьем элементе табилцы) закрытия с помощью цикла for, определяем самую большую и меньшую
+            const closePrice = parseFloat(rows[i].getElementsByTagName("td")[2].innerText);
+            sum += closePrice;
+            minPrice = Math.min(minPrice, closePrice);
+            maxPrice = Math.max(maxPrice, closePrice);
+            stockPrices.push(closePrice);
+          }
+        
+          const mean = sum / stockPrices.length;
+          let calculating_variance = 0;
+          // Проходя по каждому элементу массива, вычитаем из него среднее арифметическое и возводим в квадрат
+          for (let i = 0; i < stockPrices.length; i++) {
+            
+            calculating_variance = Math.pow(stockPrices[i]-mean,2) + calculating_variance;
+          }
+
+          let stdDeviation = Math.sqrt(calculating_variance/stockPrices.length);
+          
+          // Выводим в консоль значения
+          console.log("Minimum Price:", minPrice);
+          console.log("Maximum Price:", maxPrice);
+          console.log("Standard Deviation:", stdDeviation);
+          document.write(`<h2 class="print">Минимальная цена - ${minPrice}</h2>`)
+          document.write(`<h2 class="print">Максимальная цена - ${maxPrice}</h2>`)
+          document.write(`<h2 class="print margin">Стандратное отклонение - ${stdDeviation}</h2>`)
+        }
+
+        
+        calculateStockStats();
+        
+    </script>
+
+      
+
+</body>
+</html>
+
